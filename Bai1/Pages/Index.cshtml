@@ -1,0 +1,335 @@
+@page
+@model IndexModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VnExpress - Báo tiếng Việt nhiều người xem nhất</title>
+    <!-- Premium Fonts matching VNExpress -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-text: #222;
+            --secondary-text: #4f4f4f;
+            --meta-text: #757575;
+            --brand-color: #9f224e;
+            --border-color: #e5e5e5;
+            --bg-opinion: #fcfaf6;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            color: var(--primary-text);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            margin-bottom: 24px;
+            gap: 20px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background-color: #f2f2f2;
+            border-radius: 50%;
+            color: #555;
+            flex-shrink: 0;
+            transition: background-color 0.2s;
+        }
+
+        .home-btn:hover {
+            background-color: #e2e2e2;
+        }
+
+        .home-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-color);
+        }
+
+        /* Main Story */
+        .main-story {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-story-img {
+            flex: 1.8;
+        }
+
+        .main-story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 16/9;
+        }
+
+        .main-story-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-story-title {
+            font-family: 'Merriweather', serif;
+            font-size: 32px;
+            line-height: 1.35;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+        }
+
+        .main-story-title a:hover {
+            color: var(--brand-color);
+        }
+
+        .main-story-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--secondary-text);
+            margin: 0 0 16px 0;
+        }
+
+        .meta-info {
+            font-size: 13px;
+            color: var(--meta-text);
+            margin-top: auto;
+        }
+
+        /* Bottom Stories Grid */
+        .bottom-stories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .story-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-title {
+            font-family: 'Merriweather', serif;
+            font-size: 18px;
+            line-height: 1.4;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+        }
+
+        .story-title a:hover {
+            color: var(--brand-color);
+        }
+
+        .story-img {
+            width: 100%;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+        }
+
+        /* Opinion Section (Góc nhìn) */
+        .opinion-section {
+            background-color: var(--bg-opinion);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .opinion-header {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--brand-color);
+            margin: 0 0 16px 0;
+            text-transform: none;
+        }
+        
+        .opinion-header a {
+            color: var(--brand-color);
+        }
+
+        .opinion-title {
+            font-family: 'Merriweather', serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 0 0 12px 0;
+        }
+
+        .opinion-title a:hover {
+            color: var(--brand-color);
+        }
+
+        .opinion-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--secondary-text);
+            margin: 0 0 16px 0;
+        }
+
+        .opinion-meta {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--meta-text);
+            margin-top: auto;
+        }
+
+        .opinion-meta-author {
+            font-weight: 600;
+            color: #777;
+        }
+
+        .opinion-meta-comments {
+            display: flex;
+            align-items: center;
+            margin-left: 12px;
+            color: #8b9eb0;
+            font-weight: 600;
+        }
+
+        .opinion-meta-comments svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+            margin-right: 4px;
+        }
+
+        /* Responsive */
+        @@media (max-width: 992px) {
+            .main-story {
+                flex-direction: column;
+            }
+            .bottom-stories {
+                grid-template-columns: 1fr;
+            }
+            .opinion-section {
+                border-left: 3px solid var(--brand-color);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <a href="#" class="home-btn" title="Trang chủ">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </a>
+            <div class="nav-links">
+                <a href="#">VnE-GO</a>
+                <a href="#">Thời sự</a>
+                <a href="#">Thế giới</a>
+                <a href="#">Kinh doanh</a>
+                <a href="#">Khoa học công nghệ</a>
+                <a href="#">Góc nhìn</a>
+                <a href="#">Spotlight</a>
+                <a href="#">Bất động sản</a>
+                <a href="#">Sức khỏe</a>
+                <a href="#">Giải trí</a>
+                <a href="#">Thể thao</a>
+            </div>
+        </nav>
+
+        <!-- Main Story -->
+        <section class="main-story">
+            <div class="main-story-img">
+                <a href="#">
+                    <img src="" alt="Hanoi Sunset Red River" />
+                </a>
+            </div>
+            <div class="main-story-content">
+                <h1 class="main-story-title">
+                    <a href="#">'Ưu tiên tái định cư trước khi triển khai Trục cảnh quan sông Hồng'</a>
+                </h1>
+                <p class="main-story-desc">
+                    Hà Nội sẽ ưu tiên xây dựng các khu tái định cư trước khi triển khai Trục Đại lộ cảnh quan sông Hồng - dự án hơn 11.400 ha, liên quan khoảng 247.000 dân ven sông, thực hiện giai đoạn 2026-2038.
+                </p>
+                <div class="meta-info">
+                    <span>1h trước</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Stories -->
+        <section class="bottom-stories">
+            <div class="story-card">
+                <h2 class="story-title">
+                    <a href="#">Hà Nội giải phóng mặt bằng cho hơn 1.400 dự án</a>
+                </h2>
+                <a href="#">
+                    <!-- Sử dụng ảnh từ URL CDN thật của VNExpress như trong bản cũ -->
+                    <img class="story-img" src="https://i1-vnexpress.vnecdn.net/2026/05/19/7tulien-1779157196-9527-1779157519.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=ibyP6veJlw8tuFFJcm1N3g" alt="Demolition" />
+                </a>
+            </div>
+
+            <div class="story-card">
+                <h2 class="story-title">
+                    <a href="#">TP HCM siết kiểm soát người nhập cảnh phòng Ebola</a>
+                </h2>
+                <a href="#">
+                    <img class="story-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" alt="Airport Customs Check" />
+                </a>
+            </div>
+
+            <div class="opinion-section">
+                <h3 class="opinion-header"><a href="#">Góc nhìn</a></h3>
+                <h2 class="opinion-title">
+                    <a href="#">'Bóc lột' trên YouTube</a>
+                </h2>
+                <p class="opinion-desc">
+                    Khi cỗ máy Content ID của YouTube bị trục lợi, nhiều nghệ s...
+                </p>
+                <div class="opinion-meta">
+                    <span class="opinion-meta-author"><a href="#">Hoàng Hà</a></span>
+                    <span class="opinion-meta-comments">
+                        <!-- Comment icon -->
+                        <svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg>
+                        24
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
