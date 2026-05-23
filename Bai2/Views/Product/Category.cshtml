@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Product Category";
+}
+
+<div class="text-center mt-5">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        <h1 class="display-4 text-success">Danh mục sản phẩm</h1>
+        <p class="fs-4 mt-3">Category = <strong class="text-danger">@ViewBag.CategoryName</strong></p>
+    }
+</div>

@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+<div class="text-center mt-5">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        <h1 class="display-4 text-primary">Chi tiết sản phẩm</h1>
+        <p class="fs-4 mt-3">Product ID = <strong class="text-danger">@ViewBag.ProductId</strong></p>
+    }
+</div>
