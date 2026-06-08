@@ -1,0 +1,30 @@
+HUONG DAN CHAY PROJECT - QUAN LY SINH VIEN
+==========================================
+
+Chu de: Quan ly sinh vien (Student Management)
+
+Yeu cau:
+- .NET SDK 9.0 tro len
+- Visual Studio 2022 hoac VS Code / terminal
+
+Cach chay:
+1. Mo thu muc StudentManagement
+2. Chay lenh: dotnet run
+3. Mo trinh duyet tai: https://localhost:7xxx (xem port trong terminal)
+
+Cac chuc nang chinh:
+- /Student/Index      - Danh sach, tim kiem, sap xep
+- /Student/Detail/1   - Xem chi tiet
+- /Student/Create     - Them moi
+- /Student/Edit/1     - Sua
+- /Student/Delete/1   - Xac nhan xoa
+
+Du lieu luu trong List tam thoi (khong dung database).
+
+Tinh nang mo rong da lam:
+- Tim kiem theo ten, email, so dien thoai
+- Sap xep theo cot
+- Xac nhan truoc khi xoa
+- Thong bao thanh cong sau them/sua/xoa
+- Menu ro rang theo chuc nang
+- Tach Header, Menu, Footer thanh Partial View
