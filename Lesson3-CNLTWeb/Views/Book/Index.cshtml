@@ -1,0 +1,78 @@
+@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Danh sách sách";
+    var search = ViewData["Search"] as string ?? string.Empty;
+    var sort = ViewData["Sort"] as string ?? string.Empty;
+}
+
+<h1>Book Management</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="d-flex gap-2">
+            <input type="text" name="search" value="@search" class="form-control" placeholder="Tìm theo tên sách..." />
+            <input type="hidden" name="sort" value="@sort" />
+            <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+            @if (!string.IsNullOrEmpty(search))
+            {
+                <a asp-action="Index" asp-route-sort="@sort" class="btn btn-outline-secondary">Xóa lọc</a>
+            }
+        </form>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <div class="btn-group">
+            <a asp-action="Index" asp-route-search="@search" asp-route-sort="price_asc"
+               class="btn @(sort == "price_asc" ? "btn-primary" : "btn-outline-primary")">
+                Giá tăng dần
+            </a>
+            <a asp-action="Index" asp-route-search="@search" asp-route-sort="price_desc"
+               class="btn @(sort == "price_desc" ? "btn-primary" : "btn-outline-primary")">
+                Giá giảm dần
+            </a>
+        </div>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm sách</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tên sách</th>
+            <th>Tác giả</th>
+            <th>Giá</th>
+            <th>Ngày xuất bản</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Price.ToString("N2")</td>
+                <td>@book.PublishDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@book.Id">Chi tiết</a> |
+                    <a asp-action="Edit" asp-route-id="@book.Id">Sửa</a> |
+                    <a asp-action="Delete" asp-route-id="@book.Id">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">Không tìm thấy sách nào.</p>
+}
