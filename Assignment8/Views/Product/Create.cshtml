@@ -1,0 +1,38 @@
+﻿@model UploadImageDemo.Models.Product
+
+<h2>Thêm sản phẩm</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+<form asp-action="Create"
+      method="post"
+      enctype="multipart/form-data">
+
+    <div>
+        <label>Tên sản phẩm</label>
+        <input asp-for="Name" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Giá</label>
+        <input asp-for="Price" />
+    </div>
+
+    <br>
+
+    <div>
+        <label>Hình ảnh</label>
+        <input type="file" name="imageFile" />
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Lưu
+    </button>
+</form>

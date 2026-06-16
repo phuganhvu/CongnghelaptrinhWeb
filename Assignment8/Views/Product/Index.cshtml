@@ -1,0 +1,28 @@
+﻿@model List<UploadImageDemo.Models.Product>
+
+<h2>Danh sách sản phẩm</h2>
+
+<a asp-action="Create">
+    Thêm sản phẩm
+</a>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Hình ảnh</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+
+            <td>
+                <img src="~/images/@item.ImagePath"
+                     width="120" />
+            </td>
+        </tr>
+    }
+</table>
